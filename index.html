@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Monster game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/master.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" class="main">
+        <div class="health you">
+            <h1>YOU</h1>
+            <progress id="health" :value="playerHealth" max="100"></progress>
+        </div>
+        <div class="health monster">
+            <h1>MONSTER</h1>
+            <progress id="health" :value="monsterHealth" max="100"></progress>
+        </div>
+        <div class="row firstrow">
+            <button @click="restart" id="newgame">START NEW GAME</button>
+        </div>
+        <div class="row secondrow">
+            <button @click="attack" id="attack">ATTACK</button>
+            <button @click="specialAttack" id="special-attack">SPECIAL ATTACK</button>
+            <button @click="heal" id="heal">HEAL</button>
+            <button @click="restart" id="give-up">GIVE UP</button>
+        </div>
+        <div class="row thirdrow">
+            <ul>
+                <li v-for="log in attackLogs" :class="{ isplayer: log.isPlayer, ismonster: !log.isPlayer }" id="logs">
+                    {{ log.log }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
