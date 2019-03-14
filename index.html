@@ -10,6 +10,13 @@
 </head>
 <body>
     <div id="app" class="main">
+        <div id="myModal" class="modal" v-if="showModal">
+            <div class="modal-content">
+                <h2 v-if="showWin">You win</h2>
+                <h2 v-if="showLose">You lose</h2>
+                <button class="again" @click="playAgain">PLAY AGAIN</button>
+            </div>
+        </div>
         <div class="health you">
             <h1>YOU</h1>
             <progress id="health" :value="playerHealth" max="100"></progress>

@@ -3,7 +3,10 @@ new Vue({
   data: {
     playerHealth: 100,
     monsterHealth: 100,
-    attackLogs: []
+    attackLogs: [],
+    showLose: false,
+    showWin: false,
+    showModal: false
   },
   methods: {
     attack: function() {
@@ -49,7 +52,8 @@ new Vue({
       this.attackLogs = [];
     },
     win: function() {
-      alert("You won!");
+      this.showModal = true;
+      this.showWin = true;
     },
     monsterAttack: function() {
       const dmg = Math.floor(Math.random() * 10);
@@ -58,6 +62,19 @@ new Vue({
         log: "The monster attacked you back for: " + dmg,
         isPlayer: false
       });
+      if (this.playerHealth <= 0) {
+        this.lose();
+      }
+    },
+    lose: function() {
+      this.showModal = true;
+      this.showLose = true;
+    },
+    playAgain: function() {
+      this.showModal = false;
+      this.showLose = false;
+      this.showWin = false;
+      this.restart();
     }
   }
 });
